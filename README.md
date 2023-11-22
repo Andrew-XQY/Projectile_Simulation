@@ -1,4 +1,4 @@
-![License](https://img.shields.io/github/license/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge)
+![Repo Size](https://img.shields.io/github/languages/code-size/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/Andrew-XQY/Projectile_Simulation.svg?style=for-the-badge)
     
 # Projectile Simulation
 
@@ -18,7 +18,7 @@ Ensure the computer has C++ and Python environment installed.
 
 ### Prerequisites
 
-pip install matplotlib
+pip install matplotlib  
 pip install csv
 
 ### Installation

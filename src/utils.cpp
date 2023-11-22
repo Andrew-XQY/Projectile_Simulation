@@ -2,9 +2,7 @@
 #include <fstream>
 #include <random>
 #include <vector>
-#include <tuple>
 #include <cmath>
-#include <numeric>
 
 using namespace std;
 

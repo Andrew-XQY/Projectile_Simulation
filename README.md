@@ -18,7 +18,7 @@ Ensure the computer has C++ and Python environment installed.
 
 ### Prerequisites
 
-pip install matplotlib  
+pip install matplotlib<br>
 pip install csv
 
 ### Installation

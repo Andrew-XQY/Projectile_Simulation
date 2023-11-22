@@ -4,6 +4,9 @@ import os, glob, csv
 from statistics import mean, stdev
 
 fire_rate = {'musket' : 15, 'rifle' : 10}
+color = {'musket' : 'green', 'rifle' : 'blue'}
+plt.style.use('seaborn')
+resolution = 300
 
 # change to working directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -42,11 +45,11 @@ for dir in txt_files:
     
     plt.grid(True)
     plt.gca().set_axisbelow(True)
-    plt.bar(values, counts, color='blue')
+    plt.bar(values, counts, color=color[name.split("_")[0]])
     plt.autoscale()
     plt.xlabel(f'Number of hits in a trial ({name.split("_")[0]})')
     plt.ylabel('Number of trials')
-    plt.savefig(f'../output/histogram_{name}.png')
+    plt.savefig(f'../output/histogram_{name}.png', dpi=resolution)
     plt.clf()
 
 
@@ -67,13 +70,13 @@ for dir in csv_files:
         
     name = dir.split("/")[-1].split(".")[0]    
     plt.errorbar(distance, mean_val, yerr=std_dev, fmt='o', ecolor='red', capsize=5, 
-                 markersize=1,label='Standard Deviation')
+                 markersize=2,label='Standard Deviation')
     plt.xlabel('Distance (m)')
     plt.ylabel('Mean')
     plt.title(f'Mean and Standard Deviation vs. Distance ({name.split("_")[0]})')
     plt.legend()
     plt.grid(True)
-    plt.savefig(f'../output/distance_relation_{name}.png')
+    plt.savefig(f'../output/distance_relation_{name}.png', dpi=resolution)
     plt.clf()
 
 
@@ -103,6 +106,25 @@ plt.xlabel('Distance (m)')
 plt.ylabel('Mean value of number of hits')
 plt.title('Distance vs. Mean value of number of hits')
 plt.legend()
-plt.savefig(f'../output/distance_relation_comparision.png')
+plt.savefig(f'../output/distance_relation_comparision.png', dpi=resolution)
+plt.clf()
 
 print(f"At distance {distance[index]}m, the two weapons have the similar performance (mean) of hitting the target.")
+
+
+'''
+additional part: plot the angle
+'''
+angle_files = sorted(get_all_files("../output/angle/", type='txt'))
+
+for dir in angle_files:
+    name = dir.split("/")[-1].split(".")[0]
+    with open(dir, 'r') as f:
+        data = [float(line.strip()) for line in f]
+    num_bins = 200 # the number of bins
+    plt.hist(data, num_bins, facecolor=color[name.split("_")[0]], alpha=0.5)
+    plt.xlabel('Fire angle (degree) hits the target')
+    plt.ylabel('Frequency')
+    plt.title(f'Histogram of fire angle for {name.split("_")[0]}')
+    plt.savefig(f'../output/angle/{name}.png', dpi=resolution)
+    plt.clf()

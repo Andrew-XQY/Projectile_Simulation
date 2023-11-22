@@ -1,31 +1,10 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <iostream>
-#include <fstream>
 #include <random>
 #include <vector>
-#include <tuple>
-#include <cmath>
-#include <numeric>
+
 using namespace std;
-
-array<double, 2> calculateMeanAndStdDev(const vector<int> &v);
-
-template <typename T>
-void writeToFile(const vector<T> &vec, const string &filename = "", const string &type = "txt")
-{
-    ofstream myfile("./output/" + filename + "." + type);
-    if (!myfile.is_open())
-    {
-        cerr << "Error opening file for writing." << endl;
-        return;
-    }
-    for (const auto &element : vec)
-    {
-        myfile << element << endl;
-    }
-}
 
 class AngleGenerator
 {
@@ -67,7 +46,8 @@ public:
     double getRandAngle();
     long double optimalAngle(Target target);
     double angleToHit(double d, double h2);
-    vector<int> fireSimulation(int trials, Target target);
+    // vector<int> fireSimulation(int trials, Target target);
+    vector<int> fireSimulation(int trials, Target target, bool save_angles);
     string getNames();
 };
 

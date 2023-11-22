@@ -1,27 +1,13 @@
 #include <iostream>
-#include <fstream>
 #include <random>
-#include <vector>
 #include <cmath>
+#include "helper.h"
 
 using namespace std;
 
 // Constants
 const double g = 9.81;            // Acceleration due to gravity (m/s^2)
 const double air_density = 1.225; // Air density (kg/m^3), might be used for more realistic simulation
-
-array<double, 2> calculateMeanAndStdDev(const vector<int> &v)
-{
-    double mean = 0.0;
-    double stdDev = 0.0;
-    mean = accumulate(v.begin(), v.end(), 0.0) / v.size();
-    for (auto &num : v)
-    {
-        stdDev += (num - mean) * (num - mean);
-    }
-    stdDev = sqrt(stdDev / v.size());
-    return {mean, stdDev};
-}
 
 /*
 Generate a random angle based on normal distribution.
@@ -115,7 +101,8 @@ public:
     double getRandAngle();
     double angleToHit(double d, double h2);
     long double optimalAngle(Target target);
-    vector<int> fireSimulation(int trials, Target target);
+    // vector<int> fireSimulation(int trials, Target target);
+    vector<int> fireSimulation(int trials, Target target, bool save_angles);
     string getNames();
 };
 
@@ -152,8 +139,9 @@ double Projectile::angleToHit(double d, double h2) // give the hight and distanc
     return tmp1 < tmp2 ? tmp1 : tmp2; // always returns the smaller angle, how people normally shoot
 }
 
-vector<int> Projectile::fireSimulation(int trials, Target target)
+vector<int> Projectile::fireSimulation(int trials, Target target, bool save_angles = false)
 {
+    vector<double> angles;
     vector<int> res;
     double minAngle = angleToHit(target.getDistance(), target.getLowerBound());
     double maxAngle = angleToHit(target.getDistance(), target.getUpperBound());
@@ -167,9 +155,14 @@ vector<int> Projectile::fireSimulation(int trials, Target target)
             if (minAngle <= actual_angle && actual_angle <= maxAngle)
             {
                 hit++;
+                angles.push_back(actual_angle);  // store the angle for later use (only if its on target)
             }
         }
         res.push_back(hit);
+    }
+    if (save_angles)
+    {
+        writeToFile(angles, "/angle/" + name + "_angles_" + to_string(trials));
     }
     return res;
 }

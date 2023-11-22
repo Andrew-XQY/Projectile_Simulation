@@ -68,7 +68,7 @@ for dir in csv_files:
     name = dir.split("/")[-1].split(".")[0]    
     plt.errorbar(distance, mean_val, yerr=std_dev, fmt='o', ecolor='red', capsize=5, 
                  markersize=1,label='Standard Deviation')
-    plt.xlabel('Distance')
+    plt.xlabel('Distance (m)')
     plt.ylabel('Mean')
     plt.title(f'Mean and Standard Deviation vs. Distance ({name.split("_")[0]})')
     plt.legend()
@@ -99,7 +99,7 @@ plt.plot(distance, mean_val_musket, label='Musket')
 plt.plot(distance, mean_val, label='Rifle')
 plt.scatter(distance[index], mean_val[index], color='red', zorder=5, label='Intersection')
 plt.annotate(f'({distance[index]}, {mean_val[index]})', (distance[index] + 0.5, mean_val[index] + 0.5))
-plt.xlabel('Distance')
+plt.xlabel('Distance (m)')
 plt.ylabel('Mean value of number of hits')
 plt.title('Distance vs. Mean value of number of hits')
 plt.legend()

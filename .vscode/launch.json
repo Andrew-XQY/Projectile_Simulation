@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/andrewxu/Desktop/Projectile_Simulation/src",
-      "program": "/Users/andrewxu/Desktop/Projectile_Simulation/src/build/Debug/outDebug"
+      "cwd": ".",
+      "program": "build/Debug/outDebug"
     }
   ]
 }

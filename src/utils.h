@@ -46,8 +46,7 @@ public:
     double getRandAngle();
     long double optimalAngle(Target target);
     double angleToHit(double d, double h2);
-    // vector<int> fireSimulation(int trials, Target target);
-    vector<int> fireSimulation(int trials, Target target, bool save_angles);
+    vector<int> fireSimulation(int trials, int time, Target target, bool save_angles);
     string getNames();
 };
 

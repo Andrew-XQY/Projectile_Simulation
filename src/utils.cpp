@@ -101,8 +101,7 @@ public:
     double getRandAngle();
     double angleToHit(double d, double h2);
     long double optimalAngle(Target target);
-    // vector<int> fireSimulation(int trials, Target target);
-    vector<int> fireSimulation(int trials, Target target, bool save_angles);
+    vector<int> fireSimulation(int trials, int time, Target target, bool save_angles);
     string getNames();
 };
 
@@ -139,7 +138,7 @@ double Projectile::angleToHit(double d, double h2) // give the hight and distanc
     return tmp1 < tmp2 ? tmp1 : tmp2; // always returns the smaller angle, how people normally shoot
 }
 
-vector<int> Projectile::fireSimulation(int trials, Target target, bool save_angles = false)
+vector<int> Projectile::fireSimulation(int trials, int time, Target target, bool save_angles = false)
 {
     vector<double> angles;
     vector<int> res;
@@ -149,7 +148,7 @@ vector<int> Projectile::fireSimulation(int trials, Target target, bool save_angl
     for (int i = 0; i < trials; i++)
     {
         int hit = 0;
-        for (int j = 0; j < fire_rate * 5; j++)
+        for (int j = 0; j < fire_rate * time; j++)
         {
             double actual_angle = angle + getRandAngle();
             if (minAngle <= actual_angle && actual_angle <= maxAngle)
@@ -160,10 +159,7 @@ vector<int> Projectile::fireSimulation(int trials, Target target, bool save_angl
         }
         res.push_back(hit);
     }
-    if (save_angles)
-    {
-        writeToFile(angles, "/angle/" + name + "_angles_" + to_string(trials));
-    }
+    if (save_angles) writeToFile(angles, "/angle/" + name + "_angles_" + to_string(trials));
     return res;
 }
 

@@ -6,8 +6,6 @@
 
 A C++ project to simulate different gun projectiles with simplified physics factors.
 
-## Screenshots
-
 ## Built With
 
 <a href="https://docs.microsoft.com/en-us/cpp/standard-library/cpp-standard-library-reference?view=msvc-160"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" height="40px" width="40px" /></a><a href="https://www.python.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" height="40px" width="40px" /></a>
@@ -23,7 +21,7 @@ pip install csv
 
 ### Installation
 
-Use Shell to run the "run.sh" file.
+For Mac user, use Shell to run the "run.sh" file.
 
 ## Usage
 

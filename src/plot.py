@@ -3,10 +3,12 @@ import matplotlib.pyplot as plt
 import os, glob, csv
 from statistics import mean, stdev
 
+# control output
 fire_rate = {'musket' : 15, 'rifle' : 10}
 color = {'musket' : 'green', 'rifle' : 'blue'}
-plt.style.use('seaborn')
+plt.style.use('ggplot') # ggplot, seaborn, seaborn-dark-palette
 resolution = 300
+output_type = 'pdf' # png, pdf
 
 # change to working directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -49,7 +51,7 @@ for dir in txt_files:
     plt.autoscale()
     plt.xlabel(f'Number of hits in a trial ({name.split("_")[0]})')
     plt.ylabel('Number of trials')
-    plt.savefig(f'../output/histogram_{name}.png', dpi=resolution)
+    plt.savefig(f'../output/histogram_{name}.{output_type}', dpi=resolution)
     plt.clf()
 
 
@@ -76,7 +78,7 @@ for dir in csv_files:
     plt.title(f'Mean and Standard Deviation vs. Distance ({name.split("_")[0]})')
     plt.legend()
     plt.grid(True)
-    plt.savefig(f'../output/distance_relation_{name}.png', dpi=resolution)
+    plt.savefig(f'../output/distance_relation_{name}.{output_type}', dpi=resolution)
     plt.clf()
 
 
@@ -106,7 +108,7 @@ plt.xlabel('Distance (m)')
 plt.ylabel('Mean value of number of hits')
 plt.title('Distance vs. Mean value of number of hits')
 plt.legend()
-plt.savefig(f'../output/distance_relation_comparision.png', dpi=resolution)
+plt.savefig(f'../output/distance_relation_comparision.{output_type}', dpi=resolution)
 plt.clf()
 
 print(f"At distance {distance[index]}m, the two weapons have the similar performance (mean) of hitting the target.")
@@ -125,6 +127,7 @@ for dir in angle_files:
     plt.hist(data, num_bins, facecolor=color[name.split("_")[0]], alpha=0.5)
     plt.xlabel('Fire angle (degree) hits the target')
     plt.ylabel('Frequency')
+    plt.grid(True)
     plt.title(f'Histogram of fire angle for {name.split("_")[0]}')
-    plt.savefig(f'../output/angle/{name}.png', dpi=resolution)
+    plt.savefig(f'../output/angle/{name}.{output_type}', dpi=resolution)
     plt.clf()
